@@ -1,0 +1,21 @@
+{
+  "name": "shchehloviium",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "vite build",
+    "start": "vite"
+  },
+  "dependencies": {
+    "@suid/icons-material": "*",
+    "@suid/material": "*",
+    "katex": "^0.16.25",
+    "solid-js": "*"
+  },
+  "devDependencies": {
+    "@suid/vite-plugin": "*",
+    "typescript": "^4.8.2",
+    "vite": "*",
+    "vite-plugin-solid": "*"
+  }
+}
