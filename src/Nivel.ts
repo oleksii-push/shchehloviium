@@ -5,7 +5,7 @@ function nivelMod(variant: number, divisor: number): number {
 }
 
 function questionMod(variant: number, divisor: number): number {
-    return variant % divisor || variant;
+    return (variant % divisor) || divisor;
 }
 
 interface NivelChoiceMod {
@@ -31,10 +31,12 @@ export class Nivel {
             const mods = question.mods;
 
             for (const [variable, divisor] of Object.entries(mods)) {
+                console.log("variable, divisor", variable, divisor);
                 text = text.replace("${" + variable + "}", questionMod(variant, divisor).toString());
+                console.log(text);
             }
 
-            return Object.assign(question, { question: text });
+            return {...question, question: text };
         });
     }
 }
