@@ -1,6 +1,6 @@
 import { createSignal, For } from "solid-js";
 import { Stack, TextField, Typography } from "@suid/material";
-import { questions } from "./questions";
+import { questions, Question } from "./questions";
 import { Math } from "./Math";
 
 import "katex/dist/katex.min.css";
@@ -13,11 +13,60 @@ function questionMod(variant: number, divisor: number): number {
     return variant % divisor || variant;
 }
 
+interface NivelChoiceMod {
+    add: number;
+    divideBy: number;
+}
+
+class Nivel {
+    choiceMods: NivelChoiceMod[];
+    questions: Question[];
+
+    constructor(choiceMods: NivelChoiceMod[], questions: Question[]) {
+        this.choiceMods = choiceMods;
+        this.questions = questions;
+    }
+
+    chooseQuestionsForVariant(variant: number) {
+        return this.choiceMods.map(
+            (choiceMod) => nivelMod(variant + choiceMod.add, choiceMod.divideBy)
+        ).map((i) => {
+            let question = this.questions.at(i - 1);
+            let text = question.question;
+            const mods = question.mods;
+
+            for (const [variable, divisor] of Object.entries(mods)) {
+                text = text.replace("${" + variable + "}", questionMod(variant, divisor).toString());
+            }
+
+            return Object.assign(question, { question: text });
+        });
+    }
+}
+
 export default function App() {
-    const [nivelUno, setNivelUno] = createSignal<string[]>();
-    const [nivelDos, setNivelDos] = createSignal<string[]>();
-    const [nivelTres, setNivelTres] = createSignal<string[]>();
-    const [nivelCuatro, setNivelCuatro] = createSignal<string[]>();
+    const [nivelUnoQuestions, setNivelUnoQuestions] = createSignal<Question[]>();
+    const [nivelDosQuestions, setNivelDosQuestions] = createSignal<Question[]>();
+    const [nivelTresQuestions, setNivelTresQuestions] = createSignal<Question[]>();
+    const [nivelCuatroQuestions, setNivelCuatroQuestions] = createSignal<Question[]>();
+
+    const nivelUno = new Nivel([
+        { add: 0, divideBy: 23 },
+        { add: 12, divideBy: 23 },
+    ], questions[1]);
+
+    const nivelDos = new Nivel([
+        { add: 0, divideBy: 9 },
+        { add: 5, divideBy: 9 },
+    ], questions[2]);
+
+    const nivelTres = new Nivel([
+        { add: 0, divideBy: 7 },
+    ], questions[3]);
+
+    const nivelCuatro = new Nivel([
+        { add: 0, divideBy: 4 },
+    ], questions[4]);
 
     return (
         <Stack spacing={4} width={700}>
@@ -33,63 +82,41 @@ export default function App() {
                     style={"width: 25ch"}
                     defaultValue={0}
                     onChange={(_, value) => {
-                        const nivelUnoMod = [
-                            nivelMod(+value, 23),
-                            nivelMod(+value + 12, 23)
-                        ].map((i) => {
-                            const question = questions[1].at(i - 1);
-                            return `${question.number} ${question.question}`;
-                        });
-                        const nivelTresMod = [nivelMod(+value, 7)].map((i) => {
-                            const question = questions[3].at(i - 1);
-                            return `${question.number} ${question.question}`;
-                        });
-                        const nivelCuatroMod = [nivelMod(+value, 4)].map((i) => {
-                            const question = questions[4].at(i - 1);
-                            return `${question.number} ${question.question}`;
-                        });
-
-                        setNivelUno(nivelUnoMod);
-                        setNivelTres(nivelTresMod);
-                        setNivelCuatro(nivelCuatroMod);
-
-                        const nivelDosModIndexes = [nivelMod(+value, 9), nivelMod(+value + 5, 9)];
-                        const nivelDosMod = nivelDosModIndexes.map((i) => {
-                            let question = questions[2].at(i - 1);
-                            let text = question.question;
-                            const mods = question.mods;
-
-                            for (const [variable, divisor] of Object.entries(mods)) {
-                                text = text.replace("${" + variable + "}", questionMod(+value, divisor).toString())
-                            }
-
-                            return `${question.number} ${text}`;
-                        })
-
-                        setNivelDos(nivelDosMod);
+                        setNivelUnoQuestions(nivelUno.chooseQuestionsForVariant(+value));
+                        setNivelDosQuestions(nivelDos.chooseQuestionsForVariant(+value));
+                        setNivelTresQuestions(nivelTres.chooseQuestionsForVariant(+value));
+                        setNivelCuatroQuestions(nivelCuatro.chooseQuestionsForVariant(+value));
                     }}
                 />
             </Stack>
             <Stack spacing={2}>
                 <Typography variant="h3">Nivel 1</Typography>
-                <For each={nivelUno()}>
-                    {(item) => <Math text={item} />}
-                </For>
+                <ol>
+                    <For each={nivelUnoQuestions()}>
+                        {(item) => <li value={item.number}><Math text={item.question} /></li>}
+                    </For>
+                </ol>
 
                 <Typography variant="h3">Nivel 2</Typography>
-                <For each={nivelDos()}>
-                    {(item) => <Math text={item} />}
-                </For>
+                <ol>
+                    <For each={nivelDosQuestions()}>
+                        {(item) => <li value={item.number}><Math text={item.question} /></li>}
+                    </For>
+                </ol>
 
                 <Typography variant="h3">Nivel 3</Typography>
-                <For each={nivelTres()}>
-                    {(item) => <Math text={item} />}
-                </For>
+                <ol>
+                    <For each={nivelTresQuestions()}>
+                        {(item) => <li value={item.number}><Math text={item.question} /></li>}
+                    </For>
+                </ol>
 
                 <Typography variant="h3">Nivel 4</Typography>
-                <For each={nivelCuatro()}>
-                    {(item) => <Math text={item} />}
-                </For>
+                <ol>
+                    <For each={nivelCuatroQuestions()}>
+                        {(item) => <li value={item.number}><Math text={item.question} /></li>}
+                    </For>
+                </ol>
             </Stack>
         </Stack>
     );
