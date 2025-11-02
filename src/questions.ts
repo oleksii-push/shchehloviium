@@ -1,3 +1,12 @@
+type Variable = string;
+type Divisor = number;
+
+export interface Question {
+    mods: Record<Variable, Divisor>;
+    number: number;
+    question: string;
+}
+
 export const questions = {
     1: [
         { "mods": {}, "number": 1, "question": "\\text{Дійсна та уявна частини комплексного числа.}" },
@@ -26,7 +35,7 @@ export const questions = {
     ],
     2: [
         { "mods": { "k": 5 }, "number": 1, "question": "\\text{Кільце, яке містить число } \\frac{1}{${k}} \\text{, але НЕ є полем.}" },
-        { "mods": { "a": 10, "number": 2, "b": 11 }, "question": "\\text{Квадратне рівняння з дійсними коефіцієнтами, для якого } z = ${a} + ${b}i \\text{ є коренем.}" },
+        { "mods": { "a": 10, "b": 11 }, "number": 2, "question": "\\text{Квадратне рівняння з дійсними коефіцієнтами, для якого } z = ${a} + ${b}i \\text{ є коренем.}" },
         { "mods": { "k": 8 }, "number": 3, "question": "\\text{Комплексне число } z \\text{, що задовольняє } z^{${k}} = \\bar{z}." },
         { "mods": {}, "number": 4, "question": "\\text{Несумісна СЛР, у якої рівнянь менше, ніж змінних, без пропорційних рівнянь.}" },
         { "mods": {}, "number": 5, "question": "\\text{Сумісна СЛР, у якої рівнянь більше, ніж змінних, без пропорційних рівнянь.}" },
@@ -51,3 +60,4 @@ export const questions = {
         { "mods": {}, "number": 4, "question": "\\text{Три еквівалентні означення базису.}" },
     ]
 };
+
