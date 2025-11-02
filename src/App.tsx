@@ -1,7 +1,8 @@
 import { createSignal, For } from "solid-js";
 import { Stack, TextField, Typography } from "@suid/material";
 import { questions } from "./questions";
-import katex from "katex";
+import { Math } from "./Math";
+
 import "katex/dist/katex.min.css";
 
 function nivelMod(variant: number, divisor: number): number {
@@ -10,17 +11,6 @@ function nivelMod(variant: number, divisor: number): number {
 
 function questionMod(variant: number, divisor: number): number {
     return variant % divisor || variant;
-}
-
-function Math(props) {
-    const html = () =>
-        katex.renderToString(props.text || "", {
-            throwOnError: false,
-            displayMode: props.display ?? false
-        });
-
-    // ✅ Solid way to inject HTML
-    return <span innerHTML={html()} />;
 }
 
 export default function App() {
