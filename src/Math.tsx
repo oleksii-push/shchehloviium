@@ -3,7 +3,7 @@ import { Component } from "solid-js";
 
 interface MathProps {
     text: string;
-    display: boolean;
+    display?: boolean;
 }
 
 export const Math: Component<MathProps> = (props) => {
