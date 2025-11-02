@@ -37,16 +37,16 @@ export default function App() {
                             nivelMod(+value, 23),
                             nivelMod(+value + 12, 23)
                         ].map((i) => {
-                            i ||= questions[1].length;
-                            return `${i}. ` + questions[1].at(i - 1)["question"];
+                            const question = questions[1].at(i - 1);
+                            return `${question.number} ${question.question}`;
                         });
                         const nivelTresMod = [nivelMod(+value, 7)].map((i) => {
-                            i ||= questions[3].length;
-                            return `${i}. ` + questions[3].at(i - 1)["question"];
+                            const question = questions[3].at(i - 1);
+                            return `${question.number} ${question.question}`;
                         });
                         const nivelCuatroMod = [nivelMod(+value, 4)].map((i) => {
-                            i ||= questions[4].length;
-                            return `${i}. ` + questions[4].at(i - 1)["question"];
+                            const question = questions[4].at(i - 1);
+                            return `${question.number} ${question.question}`;
                         });
 
                         setNivelUno(nivelUnoMod);
@@ -55,15 +55,15 @@ export default function App() {
 
                         const nivelDosModIndexes = [nivelMod(+value, 9), nivelMod(+value + 5, 9)];
                         const nivelDosMod = nivelDosModIndexes.map((i) => {
-                            i ||= questions[2].length;
-                            const mods = questions[2][i - 1]["mods"];
-                            let question = `${i}. ` + questions[2][i - 1]["question"];
+                            let question = questions[2].at(i - 1);
+                            let text = question.question;
+                            const mods = question.mods;
 
                             for (const [variable, divisor] of Object.entries(mods)) {
-                                question = question.replace("${" + variable + "}", questionMod(+value, divisor).toString())
+                                text = text.replace("${" + variable + "}", questionMod(+value, divisor).toString())
                             }
 
-                            return question;
+                            return `${question.number} ${text}`;
                         })
 
                         setNivelDos(nivelDosMod);
