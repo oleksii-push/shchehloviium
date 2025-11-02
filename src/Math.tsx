@@ -1,12 +1,17 @@
 import katex from "katex";
+import { Component } from "solid-js";
 
-export function Math(props) {
+interface MathProps {
+    text: string;
+    display: boolean;
+}
+
+export const Math: Component<MathProps> = (props) => {
     const html = () =>
-        katex.renderToString(props.text || "", {
+        katex.renderToString(props.text, {
             throwOnError: false,
             displayMode: props.display ?? false
         });
 
-    // ✅ Solid way to inject HTML
     return <span innerHTML={html()} />;
 }
