@@ -1,5 +1,7 @@
 import { Question } from "./questions";
 
+export type Dificultad = "🇨🇴" | "🇲🇽" | "🇪🇸" | "🇦🇷" | "🇵🇷";
+
 function mod(variant: number, divisor: number): number {
     return (variant % divisor) || divisor;
 }
