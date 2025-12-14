@@ -1,12 +1,13 @@
 import { createSignal, For } from "solid-js";
-import { Stack, TextField, Typography } from "@suid/material";
+import { FormControl, InputLabel, MenuItem, Select, Stack, TextField, Typography } from "@suid/material";
 import { questions, Question } from "./questions";
 import { Math } from "./Math";
-import { Nivel } from "./Nivel";
+import { Dificultad, Nivel } from "./Nivel";
 
 import "katex/dist/katex.min.css";
 
 export default function App() {
+    const [dificultad, setDificultad] = createSignal<Dificultad>("🇨🇴");
     const [nivels, setNivels] = createSignal<Record<number, Question[]>>({});
 
     const nivelUno = new Nivel([
@@ -31,6 +32,22 @@ export default function App() {
         <Stack spacing={4} width={700}>
             <Stack spacing={2}>
                 <Typography variant="h2">Щегловіюм</Typography>
+                <FormControl style={"width: 25ch"}>
+                    <InputLabel id="dificultad-select-label">Складність</InputLabel>
+                    <Select
+                        labelId="dificultad-select-label"
+                        id="dificultad-select"
+                        value={dificultad()}
+                        label="Складність"
+                        onChange={(event) => setDificultad(event.target.value)}
+                    >
+                        <MenuItem value={"🇨🇴"}>🇨🇴 (60–65)</MenuItem>
+                        <MenuItem value={"🇲🇽"}>🇲🇽 (65–70)</MenuItem>
+                        <MenuItem value={"🇪🇸"}>🇪🇸 (71–80)</MenuItem>
+                        <MenuItem value={"🇦🇷"}>🇦🇷 (81–90)</MenuItem>
+                        <MenuItem value={"🇵🇷"}>🇵🇷 (91–100)</MenuItem>
+                    </Select>
+                </FormControl>
                 <TextField
                     id="outlined-number"
                     label="Варіянт"
