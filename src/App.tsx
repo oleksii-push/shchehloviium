@@ -1,4 +1,4 @@
-import { createEffect, createSignal, For } from "solid-js";
+import { createEffect, createSignal, For, Show } from "solid-js";
 import { FormControl, InputLabel, MenuItem, Select, Stack, TextField, Typography } from "@suid/material";
 import { questions, Question } from "./questions";
 import { Math } from "./Math";
@@ -120,14 +120,16 @@ export default function App() {
             <Stack spacing={2}>
                 <For each={Object.entries(nivels())}>
                     {([nivel, questions]) =>
-                        <div>
-                            <Typography variant="h3">Nivel {nivel}</Typography>
-                            <ol>
-                                <For each={questions}>
-                                    {(item) => <li value={item.number} style={"width: 100ch"}><Math text={item.question} /></li>}
-                                </For>
-                            </ol>
-                        </div>}
+                        <Show when={questions.length > 0}>
+                            <div>
+                                <Typography variant="h3">Nivel {nivel}</Typography>
+                                <ol>
+                                    <For each={questions}>
+                                        {(item) => <li value={item.number} style={"width: 100ch"}><Math text={item.question} /></li>}
+                                    </For>
+                                </ol>
+                            </div>
+                        </Show>}
                 </For>
             </Stack>
         </Stack>
