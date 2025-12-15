@@ -21,7 +21,13 @@ export default function App() {
     })
 
     const nivelUno = new Nivel({
-        "🇨🇴": [],
+        "🇨🇴": [
+            { add: 0, divideBy: 6 },
+            { add: 0, divideBy: 7 },
+            { add: 0, divideBy: 4 },
+            { add: 0, divideBy: 8 },
+            { add: 0, divideBy: 10 },
+        ],
         "🇲🇽": [
             { add: 0, divideBy: 35 },
             { add: 12, divideBy: 35 },
