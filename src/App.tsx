@@ -17,9 +17,18 @@ export default function App() {
             { add: 12, divideBy: 35 },
             { add: 24, divideBy: 35 },
         ],
-        "🇪🇸": [],
-        "🇦🇷": [],
-        "🇵🇷": [],
+        "🇪🇸": [
+            { add: 0, divideBy: 35 },
+            { add: 18, divideBy: 35 },
+        ],
+        "🇦🇷": [
+            { add: 0, divideBy: 35 },
+            { add: 18, divideBy: 35 },
+        ],
+        "🇵🇷": [
+            { add: 0, divideBy: 35 },
+            { add: 18, divideBy: 35 },
+        ],
     }, questions[1]);
 
     const nivelDos = new Nivel({
@@ -27,21 +36,43 @@ export default function App() {
             { add: 0, divideBy: 13 },
             { add: 7, divideBy: 13 },
         ],
-        "🇪🇸": [],
-        "🇦🇷": [],
-        "🇵🇷": [],
+        "🇪🇸": [
+            { add: 0, divideBy: 13 },
+            { add: 7, divideBy: 13 },
+        ],
+        "🇦🇷": [
+            { add: 0, divideBy: 13 },
+            { add: 7, divideBy: 13 },
+        ],
+        "🇵🇷": [
+            { add: 0, divideBy: 13 },
+            { add: 7, divideBy: 13 },
+        ],
     }, questions[2]);
 
     const nivelTres = new Nivel({
-        "🇪🇸": [],
-        "🇦🇷": [],
-        "🇵🇷": [],
+        "🇪🇸": [
+            { add: 0, divideBy: 11 },
+        ],
+        "🇦🇷": [
+            { add: 0, divideBy: 11 },
+            { add: 6, divideBy: 11 },
+        ],
+        "🇵🇷": [
+            { add: 0, divideBy: 11 },
+        ],
     }, questions[3]);
 
     const nivelCuatro = new Nivel({
-        "🇪🇸": [],
-        "🇦🇷": [],
-        "🇵🇷": [],
+        "🇪🇸": [
+            { add: 0, divideBy: 8 },
+        ],
+        "🇦🇷": [
+            { add: 0, divideBy: 8 },
+        ],
+        "🇵🇷": [
+            { add: 0, divideBy: 8 },
+        ],
     }, questions[4]);
 
     return (
