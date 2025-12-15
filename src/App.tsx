@@ -113,7 +113,7 @@ export default function App() {
                         shrink: true,
                     }}
                     style={"width: 25ch"}
-                    defaultValue={0}
+                    defaultValue={variant()}
                     onChange={(_, value) => setVariant(+value)}
                 />
             </Stack>
