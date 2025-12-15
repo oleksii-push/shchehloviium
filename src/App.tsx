@@ -81,7 +81,7 @@ export default function App() {
             { add: 0, divideBy: 8 },
         ],
         "🇵🇷": [
-            { add: 0, divideBy: 8 },
+            { add: 0, divideBy: 7 },
         ],
     }, questions[4]);
 
