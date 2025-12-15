@@ -78,7 +78,7 @@ export const questions = {
         { "vars": {}, "number": 11, "question": "\\text{Властивості визначників (1–3).}" },
     ],
     4: [
-        { "vars": {}, "number": 1, "question": "\\text{Система } (v_1, v_2, \\timess, v_n) \\text{ твірна } \\Rightarrow \\forall (n + 1) \\text{ вектор ЛЗ.}" },
+        { "vars": {}, "number": 1, "question": "\\text{Система } (v_1, v_2, \\cdots, v_n) \\text{ твірна } \\Rightarrow \\forall (n + 1) \\text{ вектор ЛЗ.}" },
         { "vars": {}, "number": 2, "question": "\\text{Вивід формули рівняння еліпсу (в обидва боки).}" },
         { "vars": {}, "number": 3, "question": "\\text{Вивід формули рівняння гіперболи (в обидва боки).}" },
         { "vars": {}, "number": 4, "question": "\\text{Три еквівалентні означення базису.}" },
