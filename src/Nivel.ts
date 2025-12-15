@@ -27,10 +27,10 @@ export class Nivel {
         ).map((i) => {
             let question = this.questions.at(i - 1);
             let text = question.question;
-            const mods = question.mods;
+            const vars = question.vars;
 
-            for (const [variable, divisor] of Object.entries(mods)) {
-                text = text.replaceAll("${" + variable + "}", mod(variant, divisor).toString());
+            for (const [variable, substitution] of Object.entries(vars)) {
+                text = text.replaceAll("${" + variable + "}", substitution(variant).toString());
             }
 
             return {...question, question: text };
