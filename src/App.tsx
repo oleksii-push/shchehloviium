@@ -1,4 +1,4 @@
-import { createSignal, For } from "solid-js";
+import { createEffect, createSignal, For } from "solid-js";
 import { FormControl, InputLabel, MenuItem, Select, Stack, TextField, Typography } from "@suid/material";
 import { questions, Question } from "./questions";
 import { Math } from "./Math";
@@ -7,8 +7,18 @@ import { Dificultad, Nivel } from "./Nivel";
 import "katex/dist/katex.min.css";
 
 export default function App() {
+    const [variant, setVariant] = createSignal<number>(1);
     const [dificultad, setDificultad] = createSignal<Dificultad>("🇨🇴");
     const [nivels, setNivels] = createSignal<Record<number, Question[]>>({});
+
+    createEffect(() => {
+        setNivels({
+            1: nivelUno.chooseQuestionsForVariant(variant(), dificultad()),
+            2: nivelDos.chooseQuestionsForVariant(variant(), dificultad()),
+            3: nivelTres.chooseQuestionsForVariant(variant(), dificultad()),
+            4: nivelCuatro.chooseQuestionsForVariant(variant(), dificultad()),
+        });
+    })
 
     const nivelUno = new Nivel({
         "🇨🇴": [],
@@ -104,14 +114,7 @@ export default function App() {
                     }}
                     style={"width: 25ch"}
                     defaultValue={0}
-                    onChange={(_, value) => {
-                        setNivels({
-                            1: nivelUno.chooseQuestionsForVariant(+value, dificultad()),
-                            2: nivelDos.chooseQuestionsForVariant(+value, dificultad()),
-                            3: nivelTres.chooseQuestionsForVariant(+value, dificultad()),
-                            4: nivelCuatro.chooseQuestionsForVariant(+value, dificultad()),
-                        });
-                    }}
+                    onChange={(_, value) => setVariant(+value)}
                 />
             </Stack>
             <Stack spacing={2}>
