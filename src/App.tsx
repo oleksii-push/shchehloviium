@@ -10,23 +10,39 @@ export default function App() {
     const [dificultad, setDificultad] = createSignal<Dificultad>("🇨🇴");
     const [nivels, setNivels] = createSignal<Record<number, Question[]>>({});
 
-    const nivelUno = new Nivel([
-        { add: 0, divideBy: 23 },
-        { add: 12, divideBy: 23 },
-    ], questions[1]);
+    const nivelUno = new Nivel({
+        "🇨🇴": [],
+        "🇲🇽": [
+            { add: 0, divideBy: 35 },
+            { add: 12, divideBy: 35 },
+            { add: 24, divideBy: 35 },
+        ],
+        "🇪🇸": [],
+        "🇦🇷": [],
+        "🇵🇷": [],
+    }, questions[1]);
 
-    const nivelDos = new Nivel([
-        { add: 0, divideBy: 9 },
-        { add: 5, divideBy: 9 },
-    ], questions[2]);
+    const nivelDos = new Nivel({
+        "🇲🇽": [
+            { add: 0, divideBy: 13 },
+            { add: 7, divideBy: 13 },
+        ],
+        "🇪🇸": [],
+        "🇦🇷": [],
+        "🇵🇷": [],
+    }, questions[2]);
 
-    const nivelTres = new Nivel([
-        { add: 0, divideBy: 7 },
-    ], questions[3]);
+    const nivelTres = new Nivel({
+        "🇪🇸": [],
+        "🇦🇷": [],
+        "🇵🇷": [],
+    }, questions[3]);
 
-    const nivelCuatro = new Nivel([
-        { add: 0, divideBy: 4 },
-    ], questions[4]);
+    const nivelCuatro = new Nivel({
+        "🇪🇸": [],
+        "🇦🇷": [],
+        "🇵🇷": [],
+    }, questions[4]);
 
     return (
         <Stack spacing={4} width={700}>
@@ -59,10 +75,10 @@ export default function App() {
                     defaultValue={0}
                     onChange={(_, value) => {
                         setNivels({
-                            1: nivelUno.chooseQuestionsForVariant(+value),
-                            2: nivelDos.chooseQuestionsForVariant(+value),
-                            3: nivelTres.chooseQuestionsForVariant(+value),
-                            4: nivelCuatro.chooseQuestionsForVariant(+value),
+                            1: nivelUno.chooseQuestionsForVariant(+value, dificultad()),
+                            2: nivelDos.chooseQuestionsForVariant(+value, dificultad()),
+                            3: nivelTres.chooseQuestionsForVariant(+value, dificultad()),
+                            4: nivelCuatro.chooseQuestionsForVariant(+value, dificultad()),
                         });
                     }}
                 />
@@ -74,7 +90,7 @@ export default function App() {
                             <Typography variant="h3">Nivel {nivel}</Typography>
                             <ol>
                                 <For each={questions}>
-                                    {(item) => <li value={item.number}><Math text={item.question} /></li>}
+                                    {(item) => <li value={item.number} style={"width: 100ch"}><Math text={item.question} /></li>}
                                 </For>
                             </ol>
                         </div>}

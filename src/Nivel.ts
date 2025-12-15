@@ -12,16 +12,17 @@ interface NivelChoiceMod {
 }
 
 export class Nivel {
-    choiceMods: NivelChoiceMod[];
+    choiceMods: Partial<Record<Dificultad, NivelChoiceMod[]>>;
     questions: Question[];
 
-    constructor(choiceMods: NivelChoiceMod[], questions: Question[]) {
+    constructor(choiceMods: Record<Dificultad, NivelChoiceMod[]>, questions: Question[]) {
         this.choiceMods = choiceMods;
         this.questions = questions;
     }
 
-    chooseQuestionsForVariant(variant: number) {
-        return this.choiceMods.map(
+    chooseQuestionsForVariant(variant: number, difficulty: Dificultad) {
+        const choiceMods = this.choiceMods?.[difficulty] ?? [];
+        return choiceMods.map(
             (choiceMod) => mod(variant + choiceMod.add, choiceMod.divideBy)
         ).map((i) => {
             let question = this.questions.at(i - 1);
@@ -29,7 +30,7 @@ export class Nivel {
             const mods = question.mods;
 
             for (const [variable, divisor] of Object.entries(mods)) {
-                text = text.replace("${" + variable + "}", mod(variant, divisor).toString());
+                text = text.replaceAll("${" + variable + "}", mod(variant, divisor).toString());
             }
 
             return {...question, question: text };
