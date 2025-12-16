@@ -22,11 +22,11 @@ export default function App() {
 
     const nivelUno = new Nivel({
         "🇨🇴": [
-            { add: 0, divideBy: 6 },
-            { add: 0, divideBy: 7 },
-            { add: 0, divideBy: 4 },
-            { add: 0, divideBy: 8 },
-            { add: 0, divideBy: 10 },
+            { add: 0, divideBy: 6, groupId: "complex" },
+            { add: 0, divideBy: 7, groupId: "fields" },
+            { add: 0, divideBy: 4, groupId: "conic" },
+            { add: 0, divideBy: 8, groupId: "linear-algebra" },
+            { add: 0, divideBy: 10, groupId: "permutations" },
         ],
         "🇲🇽": [
             { add: 0, divideBy: 35 },
@@ -44,8 +44,17 @@ export default function App() {
         "🇵🇷": [
             { add: 0, divideBy: 35 },
             { add: 18, divideBy: 35 },
-        ],
-    }, questions[1]);
+        ]
+    },
+        questions[1],
+        {
+            "complex": { name: "La definicion 1", questions: questions["colombia"][1] },
+            "fields": { name: "La definicion 2", questions: questions["colombia"][2] },
+            "conic": { name: "La definicion 3", questions: questions["colombia"][3] },
+            "linear-algebra": { name: "La definicion 4", questions: questions["colombia"][4] },
+            "permutations": { name: "La definicion 5", questions: questions["colombia"][5] },
+        },
+    );
 
     const nivelDos = new Nivel({
         "🇲🇽": [

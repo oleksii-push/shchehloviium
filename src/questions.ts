@@ -12,6 +12,53 @@ function mod(divisor: number): Substitution {
 }
 
 export const questions = {
+    "colombia": {
+        1: [
+            { "vars": {}, "number": 1, "question": "\\text{Дійсна та уявна частини комплексного числа.}" },
+            { "vars": {}, "number": 2, "question": "\\text{Модуль та аргумент комплексного числа (у тому числі - нюанс щодо аргумента нуля).}" },
+            { "vars": {}, "number": 3, "question": "\\text{Формула Муавра.}" },
+            { "vars": {}, "number": 4, "question": "\\text{Формули зв'язку модуля та аргумента з дійсною та уявною частинами.}" },
+            { "vars": {}, "number": 5, "question": "\\text{Тригонометрична форма комплексного числа.}" },
+            { "vars": {}, "number": 6, "question": "\\text{Спряжене та його властивості.}" },
+        ],
+        2: [
+            { "vars": {}, "number": 1, "question": "\\text{Бінарна операція.}" },
+            { "vars": {}, "number": 2, "question": "\\text{Нейтральний елемент.}" },
+            { "vars": {}, "number": 3, "question": "\\text{Правила дистрибутивності в означенні кільця й поля.}" },
+            { "vars": {}, "number": 4, "question": "\\text{Абелева (комутативна) група.}" },
+            { "vars": {}, "number": 5, "question": "\\text{Напівгрупа.}" },
+            { "vars": {}, "number": 6, "question": "\\text{Кільце.}" },
+            { "vars": {}, "number": 7, "question": "\\text{Характеристики векторного простору } V \\text{ над полем } F." },
+        ],
+        3: [
+            { "vars": {}, "number": 1, "question": "\\text{Означення гіперболи.}" },
+            { "vars": {}, "number": 2, "question": "\\text{Ексцентриситет КДП і властивості кожного з них (який > 1, який < 1, який = 1).}" },
+            { "vars": {}, "number": 3, "question": "\\text{Фокальний радіус еліпса. (Означення + формула)}" },
+            { "vars": {}, "number": 4, "question": "\\text{Канонічна система координат для параболи.}" },
+        ],
+        4: [
+            { "vars": {}, "number": 1, "question": "\\text{Лінійна комбінація.}" },
+            { "vars": {}, "number": 2, "question": "\\text{Твірна система векторів.}" },
+            { "vars": {}, "number": 3, "question": "\\text{ЛНЗ та ЛЗ системи векторів.}" },
+            { "vars": {}, "number": 4, "question": "\\text{Базис.}" },
+            { "vars": {}, "number": 5, "question": "\\text{Підпростір}" },
+            { "vars": {}, "number": 6, "question": "\\text{Розмірність.}" },
+            { "vars": {}, "number": 7, "question": "\\text{Лінійна оболонка.}" },
+            { "vars": {}, "number": 8, "question": "\\text{Ранг матриці.}" },
+        ],
+        5: [
+            { "vars": {}, "number": 1, "question": "\\text{Обернений та нейтральний елементи } S_{n}." },
+            { "vars": {}, "number": 2, "question": "\\text{Перестановка.}" },
+            { "vars": {}, "number": 3, "question": "\\text{Симетрична група } S_{n}." },
+            { "vars": {}, "number": 4, "question": "\\text{Інверсія.}" },
+            { "vars": {}, "number": 5, "question": "\\text{Цикл.}" },
+            { "vars": {}, "number": 6, "question": "\\text{Можлива кількість розвʼязків СЛР та наслідок про кількість розвʼязків у СЛР з більшою кількістю змінних, ніж рівнянь.}" },
+            { "vars": {}, "number": 7, "question": "\\text{Наслідки про кількість розвʼязків однорідної СЛР.}" },
+            { "vars": {}, "number": 8, "question": "\\text{Визначник (формула).}" },
+            { "vars": {}, "number": 9, "question": "\\text{Невироджена матриця.}" },
+            { "vars": {}, "number": 10, "question": "\\text{Зв’язок між визначником та кількістю розв’язків СЛР.}" },
+        ],
+    },
     1: [
         { "vars": {}, "number": 1, "question": "\\text{Дійсна та уявна частини комплексного числа.}" },
         { "vars": {}, "number": 2, "question": "\\text{Модуль та аргумент комплексного числа (у тому числі - нюанс щодо аргумента нуля).}" },
