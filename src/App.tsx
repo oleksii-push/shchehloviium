@@ -1,5 +1,13 @@
 import { createEffect, createSignal, For, Show } from "solid-js";
-import { FormControl, InputLabel, MenuItem, Select, Stack, TextField, Typography } from "@suid/material";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Stack,
+  TextField,
+  Typography,
+} from "@suid/material";
 import { questions, Question } from "./questions";
 import { Math } from "./Math";
 import { Dificultad, Nivel } from "./Nivel";
@@ -7,146 +15,101 @@ import { Dificultad, Nivel } from "./Nivel";
 import "katex/dist/katex.min.css";
 
 export default function App() {
-    const [variant, setVariant] = createSignal<number>(1);
-    const [dificultad, setDificultad] = createSignal<Dificultad>("🇨🇴");
-    const [nivels, setNivels] = createSignal<Record<number, Question[]>>({});
+  const [variant, setVariant] = createSignal<number>(1);
+  const [dificultad, setDificultad] = createSignal<Dificultad>("🇺🇦");
+  const [nivels, setNivels] = createSignal<Record<number, Question[]>>({});
 
-    createEffect(() => {
-        setNivels({
-            1: nivelUno.chooseQuestionsForVariant(variant(), dificultad()),
-            2: nivelDos.chooseQuestionsForVariant(variant(), dificultad()),
-            3: nivelTres.chooseQuestionsForVariant(variant(), dificultad()),
-            4: nivelCuatro.chooseQuestionsForVariant(variant(), dificultad()),
-        });
-    })
+  createEffect(() => {
+    setNivels({
+      1: nivelUno.chooseQuestionsForVariant(variant(), dificultad()),
+      2: nivelDos.chooseQuestionsForVariant(variant(), dificultad()),
+      3: nivelTres.chooseQuestionsForVariant(variant(), dificultad()),
+      4: nivelCuatro.chooseQuestionsForVariant(variant(), dificultad()),
+    });
+  });
 
-    const nivelUno = new Nivel({
-        "🇨🇴": [
-            { add: 0, divideBy: 6, groupId: "complex" },
-            { add: 0, divideBy: 7, groupId: "fields" },
-            { add: 0, divideBy: 4, groupId: "conic" },
-            { add: 0, divideBy: 8, groupId: "linear-algebra" },
-            { add: 0, divideBy: 10, groupId: "permutations" },
-        ],
-        "🇲🇽": [
-            { add: 0, divideBy: 35 },
-            { add: 12, divideBy: 35 },
-            { add: 24, divideBy: 35 },
-        ],
-        "🇪🇸": [
-            { add: 0, divideBy: 35 },
-            { add: 18, divideBy: 35 },
-        ],
-        "🇦🇷": [
-            { add: 0, divideBy: 35 },
-            { add: 18, divideBy: 35 },
-        ],
-        "🇵🇷": [
-            { add: 0, divideBy: 35 },
-            { add: 18, divideBy: 35 },
-        ]
+  const nivelUno = new Nivel(
+    {
+      "🇺🇦": [
+        { add: 0, divideBy: 23 },
+        { add: 12, divideBy: 23 },
+      ],
     },
-        questions[1],
-        {
-            "complex": { name: "La definicion 1", questions: questions["colombia"][1] },
-            "fields": { name: "La definicion 2", questions: questions["colombia"][2] },
-            "conic": { name: "La definicion 3", questions: questions["colombia"][3] },
-            "linear-algebra": { name: "La definicion 4", questions: questions["colombia"][4] },
-            "permutations": { name: "La definicion 5", questions: questions["colombia"][5] },
-        },
-    );
+    questions[1],
+  );
 
-    const nivelDos = new Nivel({
-        "🇲🇽": [
-            { add: 0, divideBy: 13 },
-            { add: 7, divideBy: 13 },
-        ],
-        "🇪🇸": [
-            { add: 0, divideBy: 13 },
-            { add: 7, divideBy: 13 },
-        ],
-        "🇦🇷": [
-            { add: 0, divideBy: 13 },
-            { add: 7, divideBy: 13 },
-        ],
-        "🇵🇷": [
-            { add: 0, divideBy: 13 },
-            { add: 7, divideBy: 13 },
-        ],
-    }, questions[2]);
+  const nivelDos = new Nivel(
+    {
+      "🇺🇦": [
+        { add: 0, divideBy: 9 },
+        { add: 5, divideBy: 9 },
+      ],
+    },
+    questions[2],
+  );
 
-    const nivelTres = new Nivel({
-        "🇪🇸": [
-            { add: 0, divideBy: 11 },
-        ],
-        "🇦🇷": [
-            { add: 0, divideBy: 11 },
-            { add: 6, divideBy: 11 },
-        ],
-        "🇵🇷": [
-            { add: 0, divideBy: 11 },
-        ],
-    }, questions[3]);
+  const nivelTres = new Nivel(
+    {
+      "🇺🇦": [{ add: 0, divideBy: 7 }],
+    },
+    questions[3],
+  );
 
-    const nivelCuatro = new Nivel({
-        "🇪🇸": [
-            { add: 0, divideBy: 8 },
-        ],
-        "🇦🇷": [
-            { add: 0, divideBy: 8 },
-        ],
-        "🇵🇷": [
-            { add: 0, divideBy: 7 },
-        ],
-    }, questions[4]);
+  const nivelCuatro = new Nivel(
+    {
+      "🇺🇦": [{ add: 0, divideBy: 4 }],
+    },
+    questions[4],
+  );
 
-    return (
-        <Stack spacing={4} width={700}>
-            <Stack spacing={2}>
-                <Typography variant="h2">Щегловіюм</Typography>
-                <FormControl style={"width: 25ch"}>
-                    <InputLabel id="dificultad-select-label">Складність</InputLabel>
-                    <Select
-                        labelId="dificultad-select-label"
-                        id="dificultad-select"
-                        value={dificultad()}
-                        label="Складність"
-                        onChange={(event) => setDificultad(event.target.value)}
-                    >
-                        <MenuItem value={"🇨🇴"}>🇨🇴 (60–65)</MenuItem>
-                        <MenuItem value={"🇲🇽"}>🇲🇽 (65–70)</MenuItem>
-                        <MenuItem value={"🇪🇸"}>🇪🇸 (71–80)</MenuItem>
-                        <MenuItem value={"🇦🇷"}>🇦🇷 (81–90)</MenuItem>
-                        <MenuItem value={"🇵🇷"}>🇵🇷 (91–100)</MenuItem>
-                    </Select>
-                </FormControl>
-                <TextField
-                    id="outlined-number"
-                    label="Варіянт"
-                    type="number"
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                    style={"width: 25ch"}
-                    defaultValue={variant()}
-                    onChange={(_, value) => setVariant(+value)}
-                />
-            </Stack>
-            <Stack spacing={2}>
-                <For each={Object.entries(nivels())}>
-                    {([nivel, questions]) =>
-                        <Show when={questions.length > 0}>
-                            <div>
-                                <Typography variant="h3">Nivel {nivel}</Typography>
-                                <ol>
-                                    <For each={questions}>
-                                        {(item) => <li value={item.number} style={"width: 100ch"}><Math text={item.question} /></li>}
-                                    </For>
-                                </ol>
-                            </div>
-                        </Show>}
-                </For>
-            </Stack>
-        </Stack>
-    );
+  return (
+    <Stack spacing={4} width={700}>
+      <Stack spacing={2}>
+        <Typography variant="h2">Щегловіюм</Typography>
+        <FormControl style={"width: 25ch"}>
+          <InputLabel id="dificultad-select-label">Складність</InputLabel>
+          <Select
+            labelId="dificultad-select-label"
+            id="dificultad-select"
+            value={dificultad()}
+            label="Складність"
+            onChange={(event) => setDificultad(event.target.value)}
+          >
+            <MenuItem value={"🇺🇦"}>🇺🇦 (Oh my dear Ukraine)</MenuItem>
+          </Select>
+        </FormControl>
+        <TextField
+          id="outlined-number"
+          label="Варіянт"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          style={"width: 25ch"}
+          defaultValue={variant()}
+          onChange={(_, value) => setVariant(+value)}
+        />
+      </Stack>
+      <Stack spacing={2}>
+        <For each={Object.entries(nivels())}>
+          {([nivel, questions]) => (
+            <Show when={questions.length > 0}>
+              <div>
+                <Typography variant="h3">Nivel {nivel}</Typography>
+                <ol>
+                  <For each={questions}>
+                    {(item) => (
+                      <li value={item.number} style={"width: 100ch"}>
+                        <Math text={item.question} />
+                      </li>
+                    )}
+                  </For>
+                </ol>
+              </div>
+            </Show>
+          )}
+        </For>
+      </Stack>
+    </Stack>
+  );
 }
