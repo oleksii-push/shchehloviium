@@ -16,7 +16,7 @@ import "katex/dist/katex.min.css";
 
 export default function App() {
   const [variant, setVariant] = createSignal<number>(1);
-  const [dificultad, setDificultad] = createSignal<Dificultad>("🇺🇦");
+  const [dificultad, setDificultad] = createSignal<Dificultad>("🇲🇽");
   const [nivels, setNivels] = createSignal<Record<number, Question[]>>({});
 
   createEffect(() => {
@@ -28,39 +28,85 @@ export default function App() {
     });
   });
 
-  const nivelUno = new Nivel(
-    {
-      "🇺🇦": [
-        { add: 0, divideBy: 23 },
-        { add: 12, divideBy: 23 },
-      ],
-    },
-    questions[1],
-  );
+  const nivelUno = new Nivel({
+          "🇨🇴": [
+              { add: 0, divideBy: 6, groupId: "group_1" },
+              { add: 0, divideBy: 7, groupId: "group_2" },
+              { add: 0, divideBy: 4, groupId: "group_3" },
+              { add: 0, divideBy: 8, groupId: "group_4" },
+              { add: 0, divideBy: 10, groupId: "group_5" },
+          ],
+          "🇲🇽": [
+              { add: 0, divideBy: 35 },
+              { add: 12, divideBy: 35 },
+              { add: 24, divideBy: 35 },
+          ],
+          "🇪🇸": [
+              { add: 0, divideBy: 35 },
+              { add: 18, divideBy: 35 },
+          ],
+          "🇺🇾": [
+              { add: 0, divideBy: 35 },
+              { add: 18, divideBy: 35 },
+          ],
+          "🇵🇷": [
+              { add: 0, divideBy: 35 },
+              { add: 18, divideBy: 35 },
+          ]
+      },
+          questions[1],
+          {
+              "group_1": { name: "La definicion 1", questions: [] },
+              "group_2": { name: "La definicion 2", questions: [] },
+              "group_3": { name: "La definicion 3", questions: [] },
+              "group_4": { name: "La definicion 4", questions: [] },
+              "group_5": { name: "La definicion 5", questions: [] },
+          },
+      );
 
-  const nivelDos = new Nivel(
-    {
-      "🇺🇦": [
-        { add: 0, divideBy: 9 },
-        { add: 5, divideBy: 9 },
-      ],
-    },
-    questions[2],
-  );
+      const nivelDos = new Nivel({
+          "🇲🇽": [
+              { add: 0, divideBy: 13 },
+              { add: 7, divideBy: 13 },
+          ],
+          "🇪🇸": [
+              { add: 0, divideBy: 13 },
+              { add: 7, divideBy: 13 },
+          ],
+          "🇺🇾": [
+              { add: 0, divideBy: 13 },
+              { add: 7, divideBy: 13 },
+          ],
+          "🇵🇷": [
+              { add: 0, divideBy: 13 },
+              { add: 7, divideBy: 13 },
+          ],
+      }, questions[2]);
 
-  const nivelTres = new Nivel(
-    {
-      "🇺🇦": [{ add: 0, divideBy: 7 }],
-    },
-    questions[3],
-  );
+      const nivelTres = new Nivel({
+          "🇪🇸": [
+              { add: 0, divideBy: 11 },
+          ],
+          "🇺🇾": [
+              { add: 0, divideBy: 11 },
+              { add: 6, divideBy: 11 },
+          ],
+          "🇵🇷": [
+              { add: 0, divideBy: 11 },
+          ],
+      }, questions[3]);
 
-  const nivelCuatro = new Nivel(
-    {
-      "🇺🇦": [{ add: 0, divideBy: 4 }],
-    },
-    questions[4],
-  );
+      const nivelCuatro = new Nivel({
+          "🇪🇸": [
+              { add: 0, divideBy: 6 },
+          ],
+          "🇺🇾": [
+              { add: 0, divideBy: 6 },
+          ],
+          "🇵🇷": [
+              { add: 0, divideBy: 6 },
+          ],
+      }, questions[4]);
 
   return (
     <Stack spacing={4} width={700}>
@@ -75,7 +121,11 @@ export default function App() {
             label="Складність"
             onChange={(event) => setDificultad(event.target.value)}
           >
-            <MenuItem value={"🇺🇦"}>🇺🇦 (Oh my dear Ukraine)</MenuItem>
+            <MenuItem value={"🇨🇴"}>🇨🇴 (60–65)</MenuItem>
+            <MenuItem value={"🇲🇽"}>🇲🇽 (65–70)</MenuItem>
+            <MenuItem value={"🇪🇸"}>🇪🇸 (71–80)</MenuItem>
+            <MenuItem value={"🇺🇾"}>🇺🇾 (81–90)</MenuItem>
+            <MenuItem value={"🇵🇷"}>🇵🇷 (91–100)</MenuItem>
           </Select>
         </FormControl>
         <TextField

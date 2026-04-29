@@ -90,6 +90,18 @@ export const questions = {
       question: "\\text{Сума, добуток, композиція операторів.}",
     },
     { vars: {}, number: 23, question: "\\text{Інваріантний підпростір.}" },
+    { vars: {}, number: 24, question: "\\text{Оборотні елементи.}" },
+    { vars: {}, number: 25, question: "\\text{Асоційовні елементи.}" },
+    { vars: {}, number: 26, question: "\\text{Евклідове кільце (з означенням норми).}" },
+    { vars: {}, number: 27, question: "\\text{Факторіальне кільце.}" },
+    { vars: {}, number: 28, question: "\\text{Ділення одного многочлена на інший з остачею.}" },
+    { vars: {}, number: 29, question: "a \\equiv b \\mod c" },
+    { vars: {}, number: 30, question: "\\text{Мала теорема Ферма.}" },
+    { vars: {}, number: 31, question: "\\phi (n), \\text{ де } n = p_1^{\\alpha_1} p_2^{\\alpha_2} \\dots p_k^{\\alpha_k}." },
+    { vars: {}, number: 32, question: "\\text{Мультиплікативність функції Ойлера.}" },
+    { vars: {}, number: 33, question: "\\text{Властивості НСД (формулювання).}" },
+    { vars: {}, number: 34, question: "\\text{Гауссові числа.}" },
+    { vars: {}, number: 35, question: "\\text{Норма в } \\Bbb{Z}[i] \\text{ та } \\Bbb{Q}[x]." }
   ],
   2: [
     {
@@ -161,6 +173,41 @@ export const questions = {
       question:
         "\\text{Евклідовий простір та ${k+3} векторів } v_1, \\dots, v_{${k+3}}, \\text{ де вектор } v_i \\text{ ортогональний } v_{i-1} \\text{ та } v_{i+1} \\text{ і НЕортогональний усім іншим (вважаємо } v_0 = v_{${k+3}}, v_{${k+4}} = v_1).",
     },
+    {
+      vars: {
+        "k+1": (variant) => mod(7)(variant) + 1,
+      },
+      number: 10,
+      question:
+        "\\text{Кільце, яке міститиме скінченну кількість елементів, і в якому число ${k+1} НЕ буде оборотним}",
+    },
+    {
+      vars: {
+        "k": (variant) => mod(13)(variant),
+        "k+1": (variant) => mod(13)(variant) + 1,
+        "2k+2": (variant) => 2*mod(13)(variant) + 2,
+      },
+      number: 11,
+      question:
+        "\\text{Два многочлени степенів ${k+1} та ${2k+2}, що залишок при діленні другого на перший має степінь ${k}}",
+    },
+    {
+      vars: {
+        "k": (variant) => mod(2)(variant),
+        "2k+1": (variant) => 2*mod(2)(variant) + 1,
+      },
+      number: 12,
+      question:
+        "\\text{Натуральне число, що ділиться на ${2k+1} різних попарно НЕасоційовних гауссових, що не є натуральними.}",
+    },
+    {
+      vars: {
+        "k": (variant) => mod(10)(variant),
+      },
+      number: 13,
+      question:
+        "\\text{Поле з непарною кількістю елементів, у якому ${k} є оборотний сам до себе}",
+    },
   ],
   "3": [
     {
@@ -197,6 +244,10 @@ export const questions = {
       question: "\\text{Представлення НСД(a,b) як лінійної комбінації a та b.}",
     },
     { vars: {}, number: 7, question: "\\text{Основна властивість простих.}" },
+    { vars: {}, number: 8, question: "\\text{ЛНЗ власних векторів, які відповідають різним власним числам.}" },
+    { vars: {}, number: 9, question: "\\text{0 — єдине власне число нільпотентного оператора.}" },
+    { vars: {}, number: 10, question: "\\text{Приклад нерозкладного, але НЕ простого елементу.}" },
+    { vars: {}, number: 11, question: "\\text{«Кит».}" },
   ],
   "4": [
     {
@@ -216,5 +267,7 @@ export const questions = {
       question: "det(AB) = det(A) \\cdot det(B)",
     },
     { vars: {}, number: 4, question: "\\text{Основна теорема арифметики.}" },
+    { vars: {}, number: 5, question: "\\text{Загальний розв’язок діофантового рівняння.}" },
+    { vars: {}, number: 6, question: "\\text{Теорема Ойлера.}" },
   ],
 };
